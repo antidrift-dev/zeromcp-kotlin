@@ -1,4 +1,4 @@
-package io.zeromcp
+package io.antidrift.zeromcp
 
 import kotlinx.serialization.json.*
 

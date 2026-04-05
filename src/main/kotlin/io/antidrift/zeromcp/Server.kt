@@ -1,6 +1,7 @@
-package io.zeromcp
+package io.antidrift.zeromcp
 
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import kotlinx.serialization.json.*
 
 /**
@@ -104,8 +105,9 @@ class ZeroMcp(private val config: ZeroMcpConfig = loadConfig()) {
 
             "tools/call" -> {
                 val toolName = params?.get("name")?.jsonPrimitive?.content ?: ""
-                val args = params?.get("arguments")?.jsonObject
-                val argsMap = args?.toArgMap() ?: emptyMap()
+                // Guard against null arguments (JSON null or missing)
+                val argsElement = params?.get("arguments")
+                val argsMap = if (argsElement is JsonObject) argsElement.toArgMap() else emptyMap()
                 buildResponse(id, callTool(toolName, argsMap))
             }
 
@@ -129,15 +131,23 @@ class ZeroMcp(private val config: ZeroMcpConfig = loadConfig()) {
             return buildToolResult("Validation errors:\n${errors.joinToString("\n")}", isError = true)
         }
 
+        // Tool-level timeout overrides config default
+        val timeoutMs = if (tool.permissions.executeTimeout > 0) tool.permissions.executeTimeout
+                        else config.execute_timeout
+
         return try {
             val ctx = Ctx(toolName = name, permissions = tool.permissions)
-            val result = tool.execute(args, ctx)
+            val result = withTimeout(timeoutMs) {
+                tool.execute(args, ctx)
+            }
             val text = when (result) {
                 is String -> result
                 null -> "null"
                 else -> json.encodeToString(JsonElement.serializer(), toJsonElement(result))
             }
             buildToolResult(text)
+        } catch (e: kotlinx.coroutines.TimeoutCancellationException) {
+            buildToolResult("Tool \"$name\" timed out after ${timeoutMs}ms", isError = true)
         } catch (e: Exception) {
             buildToolResult("Error: ${e.message}", isError = true)
         }

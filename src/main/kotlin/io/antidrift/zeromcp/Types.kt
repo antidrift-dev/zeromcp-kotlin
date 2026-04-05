@@ -1,4 +1,4 @@
-package io.zeromcp
+package io.antidrift.zeromcp
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
@@ -47,7 +47,8 @@ typealias InputSchema = Map<String, InputField>
 data class Permissions(
     val network: NetworkPermission = NetworkPermission.Unset,
     val fs: FsPermission = FsPermission.None,
-    val exec: Boolean = false
+    val exec: Boolean = false,
+    val executeTimeout: Long = 0 // ms, 0 means use config default
 )
 
 sealed class NetworkPermission {

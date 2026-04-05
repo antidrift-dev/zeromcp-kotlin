@@ -1,4 +1,4 @@
-package io.zeromcp
+package io.antidrift.zeromcp
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -12,7 +12,8 @@ data class ZeroMcpConfig(
     val bypass_permissions: Boolean = false,
     val separator: String = "_",
     val name: String = "zeromcp",
-    val version: String = "0.1.0"
+    val version: String = "0.1.0",
+    val execute_timeout: Long = 30000 // ms
 )
 
 private val json = Json { ignoreUnknownKeys = true }
