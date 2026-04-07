@@ -4,8 +4,8 @@ plugins {
     `maven-publish`
 }
 
-group = "io.antidrift"
-version = "0.1.0"
+group = "dev.antidrift"
+version = "0.1.1"
 
 repositories {
     mavenCentral()

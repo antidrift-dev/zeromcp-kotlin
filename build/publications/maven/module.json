@@ -1,0 +1,96 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "dev.antidrift",
+    "module": "zeromcp",
+    "version": "0.1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.0.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "zeromcp-0.1.0.jar",
+          "url": "zeromcp-0.1.0.jar",
+          "size": 61593,
+          "sha512": "6f507238f3cc524ad42b2dcc1d261d4db83f08bf1780f2fd3eb4a031cfd424f8baee5b065d019520291f118c1fcac88b89e0a7900d8fa8cede8de5446ee1e85e",
+          "sha256": "cb2f0088b66c2164144393fd736d3e7f4c16ec56fdd401e6c4ae66c9a2a0e418",
+          "sha1": "1895fc423b9d59ce22a0b2c74420c05453ca346b",
+          "md5": "7db19bd671a1eaf9a842cd1690303cb9"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.7.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.8.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.0.21"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "zeromcp-0.1.0.jar",
+          "url": "zeromcp-0.1.0.jar",
+          "size": 61593,
+          "sha512": "6f507238f3cc524ad42b2dcc1d261d4db83f08bf1780f2fd3eb4a031cfd424f8baee5b065d019520291f118c1fcac88b89e0a7900d8fa8cede8de5446ee1e85e",
+          "sha256": "cb2f0088b66c2164144393fd736d3e7f4c16ec56fdd401e6c4ae66c9a2a0e418",
+          "sha1": "1895fc423b9d59ce22a0b2c74420c05453ca346b",
+          "md5": "7db19bd671a1eaf9a842cd1690303cb9"
+        }
+      ]
+    }
+  ]
+}
